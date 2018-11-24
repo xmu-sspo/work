@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.sspo.dao.TopicDao">
+	<resultMap type="xmu.sspo.model.Topic" id="TopicList">
+         <result column="id" property="id"/>
+         <result column="center_index" property="center_index"/>
+         <result column="title" property="title"/>
+         <result column="date" property="date"/>
+         <result column="news_list" property="news_list"/>
+         <result column="label" property="label"/>
+     </resultMap>
+     
+     <sql id="base_topic">
+		id,center_index,title,date,news_list,label
+	 </sql>
+     
+     <!-- 获取话题表内所有内容 -->
+     <select id="getTopicList" resultType="topic">
+		SELECT
+		<include refid="base_topic" />
+		FROM topic
+	</select>
+     
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataConfig>
+    <dataSource type="JdbcDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/sspo" user="root" password="123456" batchSize="-1" />
+    <document name="testDoc">
+             <entity name="News" pk="id" query="select * from news">
+                <field column="id" name="id"/>
+                <field column="data_from" name="data_from"/>
+                <field column="url" name="url"/>
+                <field column="title" name="title"/>
+                <field column="content" name="content"/>
+                <field column="time" name="time"/>
+                <field column="author" name="author"/>
+                <field column="browse" name="browse"/>
+                <field column="comment" name="comment"/>
+                <field column="click" name="click"/>
+            </entity>
+    </document>
+</dataConfig>

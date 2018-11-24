@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.sspo.dao.UserDao">
+
+	<resultMap type="xmu.sspo.model.User" id="userinfoMap">
+         <result column="id" property="id"/>
+         <result column="username" property="username"/>
+         <result column="password" property="password"/>
+         <result column="role" property="role"/>
+     </resultMap>
+     
+     <sql id="base_user">
+		id,username,password,role
+	</sql>
+	
+	<!-- 	说明:通过用户名获取实体信息 -->
+	<select id="getUserByName" resultType="user">
+		SELECT
+		<include refid="base_user" />
+		FROM user u
+		WHERE 
+		u.username=#{username}
+	</select>
+	
+	<!-- 	说明:通过用户id获取实体信息 -->
+	<select id="getUserById" resultType="user">
+		SELECT
+		<include refid="base_user" />
+		FROM user u
+		WHERE 
+		u.id=#{id}
+	</select>
+	
+	
+</mapper>

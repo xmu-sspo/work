@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.box{
+   	width:900px;
+   	margin:auto;
+   	background:pink;
+   }
+.table{
+	border: 2px solid #ddd;
+	border-collapse: collapse;
+}
+.table th,
+.table td{
+	border: 1px solid #eee;
+	padding: 3px 5px;
+}

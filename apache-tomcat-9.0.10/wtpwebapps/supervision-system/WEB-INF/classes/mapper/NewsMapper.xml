@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.sspo.dao.NewsDao">
+
+	<resultMap type="xmu.sspo.model.News" id="newsinfoMap">
+         <result column="id" property="id"/>
+         <result column="data_from" property="data_from"/>
+         <result column="url" property="url"/>
+         <result column="title" property="title"/>
+         <result column="content" property="content"/>
+         <result column="time" property="time"/>
+         <result column="author" property="author"/>
+         <result column="browse" property="browse"/>
+         <result column="comment" property="comment"/>
+         <result column="click" property="click"/>
+     </resultMap>
+     
+	<sql id="base_sql">
+		id,data_from,url,title,content,time,author,browse,comment,click
+	</sql>
+
+	<!-- 	说明:通过id获取实体信息 
+		匹配条件: @param id 实体的id 
+		返回字段： 全部  -->
+	<select id="get" resultType="news">
+		SELECT
+		<include refid="base_sql" />
+		FROM this_month WHERE id=#{id}
+	</select>
+	
+	<select id="listNews" resultType="news" parameterType="int">
+		SELECT
+		<include refid="base_sql" />
+		FROM this_month
+		ORDER BY time DESC
+		limit #{page},15
+	</select>
+	
+	<!-- 根据月份获取该月所有新闻 -->
+	<select id="listNewsPerMonth" resultType="news" parameterType="java.util.Map" statementType="STATEMENT">
+		
+		<![CDATA[
+			SELECT id,data_from,url,title,content,time,author,browse,comment,click
+			FROM `${month}`
+		]]>
+	</select>
+	
+	
+	<!-- 根据id列表获取新闻列表 -->
+	<select id="getNewsListByIdList" parameterType="java.util.List" resultMap="newsinfoMap">
+		select 
+		<include refid="base_sql" />
+		from this_month 
+		<where>
+			<if test="list!=null">
+		        <foreach collection="list" item="id" open="and id in(" close=")" separator="," >
+		            #{id}
+	            </foreach>
+	        </if>
+	    </where>
+	</select>
+	
+	<!-- 获取数据库中存储的新闻总条数 -->
+	<select id="getNewsCount" resultType="BigInteger">
+	   select count(*) from this_month
+	</select>
+</mapper>
