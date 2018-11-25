@@ -7,6 +7,7 @@
 import pymysql
 import pymysql.cursors
 import re
+import datetime
 
 from scrapy.conf import settings
 
@@ -73,18 +74,20 @@ class QqScrapyPipeline(object):
 #                con.rollback()
 #            else:
 #                con.commit()
-#        cue.execute("select count(*) from this_month where url=%s",item['url'])
-#        if cue.fetchone()[0]==0: 
-#            try:
-#                #插入当月表
-#                cue.execute("insert into this_month (data_from,url,title,content,time) values(%s,%s,%s,%s,%s)", 
-#                            (item['data_from'],item['url'],item['title'],item['content'],item['time']))        
-#                print('Insert success')
-#            except Exception as e:
-#                print('Insert error:',e)
-#                con.rollback()
-#            else:
-#                con.commit()
+        in_30_days = (datetime.datetime.now()-datetime.timedelta(days=30)).strftime('%Y-%m-%d')
+        if in_30_days<=item['time']:
+            cue.execute("select count(*) from this_month where url=%s",item['url'])
+            if cue.fetchone()[0]==0: 
+                try:
+                    #插入当月表
+                    cue.execute("insert into this_month (data_from,url,title,content,time) values(%s,%s,%s,%s,%s)", 
+                                (item['data_from'],item['url'],item['title'],item['content'],item['time']))        
+                    print('Insert success')
+                except Exception as e:
+                    print('Insert error:',e)
+                    con.rollback()
+                else:
+                    con.commit()
             
         con.close()
         return item
