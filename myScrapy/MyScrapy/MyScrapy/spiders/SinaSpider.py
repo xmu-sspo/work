@@ -14,6 +14,7 @@ class SinaSpider(CrawlSpider):
     allow_domains = [".sina.com.cn/"]
     start_urls = ['https://www.sina.com.cn/']
 #    url_pattern = r'https?://[a-z]+.sina.com.cn\/[a-z\/]+[0-9-]+\/[0-9a-z]+-+[0-9a-z]+.shtml'
+#    url_pattern = 'https?://[a-z]+.sina.com.cn/[a-z\/]+2018-[0-9]{2}-[0-9]{2}/[0-9a-z-]+.shtml'
     #当天新闻
     year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
     url_pattern = 'https?://[a-z]+.sina.com.cn/[a-z\/]+'+year_Month[0]+'-'+year_Month[1]+'-'+year_Month[2]+'/[0-9a-z-]+.shtml'

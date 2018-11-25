@@ -12,7 +12,7 @@ class GuanchaSpider(CrawlSpider):
     name = 'GuanchaSpider'
     allow_domains = [".guancha.cn"] #过滤广告？
     start_urls = ['https://www.guancha.cn/']  
-    #url_pattern = r'https://www.guancha.cn\/[a-zA-Z]+\/[0-9]{4}_[0-9]{2}_[0-9]{2}_[0-9]{6}[_0-9]*.shtml'
+#    url_pattern = r'https://www.guancha.cn\/[a-zA-Z]+\/2018_[0-9]{2}_[0-9]{2}_[0-9]{6}[_0-9]*.shtml'
     #每日更新，只取当天的url
     year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
     url_pattern = 'https?://www.guancha.cn/[a-zA-Z]+/'+ year_Month[0] +'_' + year_Month[1] + '_'+year_Month[2]+'_[0-9]{6}[_0-9]*.shtml'
@@ -48,10 +48,10 @@ class GuanchaSpider(CrawlSpider):
         #    return
         
         #每日更新时，url上的日期和发表时间不一致的话，按发表时间来，不计入当日新闻
-        year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
-        showTime = re.findall(r"\d+",item['time'])
-        if showTime[2]!=year_Month[2] or showTime[1]!=year_Month[1]:
-            return
+#        year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
+#        showTime = re.findall(r"\d+",item['time'])
+#        if showTime[2]!=year_Month[2] or showTime[1]!=year_Month[1]:
+#            return
         
         if selector.xpath("//h1"):          
             item['title'] = selector.xpath("//h1/text()").extract()[0].strip()

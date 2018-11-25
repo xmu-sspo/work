@@ -14,7 +14,7 @@ class HuanqiuSpider(CrawlSpider):
     allow_domains = [".huanqiu.com"]
     start_urls = ['http://www.huanqiu.com/']
     #去掉error.huanqiu.com 和 v.huanqiu.com
-    url_pattern = r'http://[^ev][a-z]*.huanqiu.com\/[a-zA-Z]*\/[0-9]{4}-[0-9]{2}\/[0-9]{8}.html'
+    url_pattern = r'http://[^ev][a-z]*.huanqiu.com\/[a-zA-Z]*\/2018-[0-9]{2}\/[0-9]{8}.html'
     #每日更新，这里是月份
     year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
     url_pattern = 'http://[^ev][a-z]*.huanqiu.com/[a-zA-Z]*/'+year_Month[0]+'-'+year_Month[1]+'/[0-9]{8}.html'

@@ -10,10 +10,10 @@ class BjnewsSpider(CrawlSpider):
     name = 'BjnewsSpider'
     allow_domains = ['www.bjnews.com.cn']
     start_urls= ['http://www.bjnews.com.cn/']
-    url_pattern = r'http://www.bjnews.com.cn\/[a-z]+/2018/[0-9]{2}/[0-9]{2}/[0-9]+.html'
+#    url_pattern = r'http://www.bjnews.com.cn\/[a-z]+/2018/[0-9]{2}/[0-9]{2}/[0-9]+.html'
     #每日更新，这里是月份
-#    year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
-#    url_pattern = r'http://www.bjnews.com.cn\/[a-z]+/' +year_Month[0]+'/'+year_Month[1]+'/'+year_Month[2]+ '/[0-9]+.html'
+    year_Month = re.findall("\d+",datetime.datetime.now().strftime('%Y-%m-%d'))
+    url_pattern = r'http://www.bjnews.com.cn\/[a-z]+/' +year_Month[0]+'/'+year_Month[1]+'/'+year_Month[2]+ '/[0-9]+.html'
     rules = [
                 Rule(LxmlLinkExtractor(allow=[url_pattern]), callback= 'parse_news', follow=True)
             ]
