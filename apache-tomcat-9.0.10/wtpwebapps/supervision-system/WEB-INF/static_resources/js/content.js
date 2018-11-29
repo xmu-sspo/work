@@ -51,10 +51,10 @@ function setNews(id){
 		$("#data_from").html("<label >来源：</label>" + news.data_from);
 		$("#url").html("<label >原网址：</label><a href='" + news.url + "' target='_Blank'>" + news.url + "</a>");
 		$("#time").html("<label >发表时间：</label>" + time);
-		$("#author").html("<label >作者：</label>" + news.author);
-		$("#browse").html("<label >浏览量：</label>" + news.browse);
-		$("#comment").html("<label >评论数：</label>" + news.comment);
-		$("#clickRate").html("<label >点击量：</label>" + news.click);
+//		$("#author").html("<label >作者：</label>" + news.author);
+//		$("#browse").html("<label >浏览量：</label>" + news.browse);
+//		$("#comment").html("<label >评论数：</label>" + news.comment);
+//		$("#clickRate").html("<label >点击量：</label>" + news.click);
 		$("#content").html("<label >内容：</label>" + news.content);		
 			
 	},error:function(){

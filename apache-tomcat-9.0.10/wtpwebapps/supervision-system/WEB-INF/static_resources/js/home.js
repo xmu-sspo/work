@@ -13,8 +13,18 @@ $(function(){
     // 搜索点击事件
     $("#search").click(function(){
         var keywords = $("#keywords").val();
+        
         history(keywords); //添加到缓存
         update_history(); //更新搜索历史
+        
+        //检索
+        $.ajax({
+        	url:"/query",
+        	data:{s1:keywords},
+        	success:function(data){
+        		alert("success");
+        	}
+        });       
     })
 
     // 清空搜索历史

@@ -82,13 +82,14 @@
 				      </ul>
 				    </li>
 				    <li class="admin-parent">
-				      <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><i class="am-icon-line-chart" aria-hidden="true"></i>话题分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
-				      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
-				        <!--  <li><a href="/chart_line" class="am-cf"> 折线图</span></a></li>
-				        <li><a href="/chart_columnar" class="am-cf"> 柱状图</a></li>
-				        <li><a href="/chart_pie" class="am-cf"> 饼状图</a></li>-->
-				      </ul>
-				    </li> 
+	                    <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><i class="am-icon-line-chart" aria-hidden="true"></i>话题分析 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+	                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+	                        <li><a href="/chart_line" class="am-cf"> 热度变化趋势图</a></li>
+	                        <li><a href="/chart_pie" class="am-cf"> 发布平台分析图</a></li>
+	                        <!--  <li><a href="/chart_columnar" class="am-cf"> 柱状图</a></li>
+	                        <li><a href="/chart_pie" class="am-cf"> 饼状图</a></li>-->
+	                    </ul>
+	                </li> 
 				    <li class="admin-parent">
 				      <a class="am-cf" data-am-collapse="{target: '#collapse-nav5'}"><span class="am-icon-file"></span> 话题管理 <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
 				      <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav5">
@@ -155,8 +156,17 @@
               </tr>
               </thead>
               <tbody id="table_tbody">
-              
-
+              	<c:forEach items="${news}" var="newsItem">
+					<tr>
+						<td>${newsItem.id}</td>
+						<td>${newsItem.title}</td>					
+						<td>${newsItem.data_from}</td>
+						<td>${newsItem.content}</td>
+						<td>${newsItem.time}</td>
+						<td>${newsItem.click}</td>
+						<td><a href="${newsItem.url}">查看原网址...</a></td>
+					</tr>
+				</c:forEach>
               </tbody>
             </table>
             <div class="am-cf" >

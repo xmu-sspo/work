@@ -212,8 +212,8 @@ function nex_page(page)
 }
 
 
-
 //查看具体的一条新闻
 function oneNews(id){
 	window.location.href="/content?id="+id;
 }
+
